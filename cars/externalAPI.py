@@ -7,7 +7,7 @@ def get_models(make):
 
     resp = requests.get(url)
     if resp.status_code == 200:
-        models = [itm['Model_Name'] for itm in resp.json()['Results']]
+        models = [itm['Model_Name'].lower() for itm in resp.json()['Results']]
         return models if models else None
     else:
         return None
@@ -22,4 +22,7 @@ def check_make(make):
 def check_make_model(make, model):
     models = get_models(make)
 
-    return True if model in models else False
+    return True if model.lower() in models else False
+
+
+# print(check_make_model('Volvo', 'S40'))

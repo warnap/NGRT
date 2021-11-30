@@ -93,3 +93,5 @@ STATIC_URL = '/static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 API_URL = 'https://vpic.nhtsa.dot.gov/api/'
+
+# APPEND_SLASH = True

@@ -11,7 +11,7 @@ API. <br />Here's a full specification of endpoints that we'd like it to have:
 `POST /cars/`
 
 ```
-Content-Type: application/json;charset=UTF-8
+**Content-Type: application/json;charset=UTF-8**
 ```
 
 ```json

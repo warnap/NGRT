@@ -1,14 +1,10 @@
-from django.conf.urls import include, re_path
-from rest_framework import routers
+from django.conf.urls import re_path
 from .views import *
 
-#
-# router = routers.DefaultRouter()
-# router.register(r'', )
-
-
 urlpatterns = [
-    # re_path(r'', include(router.urls)),
-    re_path(r'^cars/$', CarListViewSet.as_view(), name='car_list'),
-    re_path(r'^cars/(?P<pk>[^/.]+)/$', CarDetailViewSet.as_view(), name='car_detail'),
+    # re_path(r'^makes/$', MakeListViewSet.as_view(), name='car_list'),
+    re_path(r'^cars/$', CarViewSet.as_view(), name='car-list'),
+    re_path(r'^rate/$', CarRateViewSet.as_view(), name='car-rate'),
+    re_path(r'^cars/(?P<pk>[^/.]+)/$', CarDeleteViewSet.as_view(), name='car-delete'),
+    re_path(r'^popular/$', PopularCarListViewSet.as_view(), name='popular-car-list'),
 ]
