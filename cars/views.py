@@ -1,34 +1,10 @@
-from rest_framework import viewsets, permissions, status
+from rest_framework import permissions, status
 from rest_framework.mixins import CreateModelMixin, ListModelMixin, DestroyModelMixin
 from rest_framework.generics import GenericAPIView
 from .serializers import *
-from .externalAPI import check_make, check_make_model
 from django.db.models import Count, Avg
 from rest_framework.response import Response
-from .models import Make, Car, Rate
-
-
-class MakeListViewSet(ListModelMixin,
-                      GenericAPIView):
-    """
-
-    """
-    queryset = Make.objects.all()
-    serializer_class = MakeSerializer
-    permission_classes = [permissions.AllowAny]
-
-    def get(self, request):
-        return self.list(request)
-
-
-# class CarViewSet(viewsets.ViewSet, GenericAPIView):
-#     def list(self, request, *args, **kwargs):
-#         queryset = Car.objects.all()
-#         serialzer
-#         return Response(serializer.data)
-#
-#     def create(self):
-#         pass
+from .models import Car
 
 
 class CarViewSet(ListModelMixin, CreateModelMixin, GenericAPIView):
@@ -37,9 +13,7 @@ class CarViewSet(ListModelMixin, CreateModelMixin, GenericAPIView):
     """
     queryset = Car.objects.annotate(avg_rating=Avg('rate')).order_by('pk')
     serializer_class = CarListSerializer
-    custom_serializer_classes = {
-        'create': CarCreateSerializer,
-    }
+
     permission_classes = [permissions.AllowAny]
 
     def get(self, request):
